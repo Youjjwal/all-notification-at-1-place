@@ -1,0 +1,32 @@
+set fallback
+
+tag := `git rev-parse HEAD`
+
+default:
+    @just --choose
+
+@build:
+    docker-compose build universal-inbox
+
+publish tag=tag:
+    #!/usr/bin/env bash
+
+    if [ -z "$DOCKER_BUILDX_BUILDER" ]; then
+        echo "ℹ️ Using local Docker buildx builder"
+        docker buildx ls | grep -q ^universal-inbox || docker buildx create --use --driver docker-container --name universal-inbox
+        DOCKER_BUILDX_BUILDER=universal-inbox
+    else
+        echo "ℹ️ Using Docker buildx builder $DOCKER_BUILDX_BUILDER"
+    fi
+    docker buildx build \
+      --builder "$DOCKER_BUILDX_BUILDER" \
+      --push \
+      --platform linux/amd64,linux/arm64 \
+      --label version={{ tag }} \
+      --build-arg VERSION={{ tag }} \
+      -t dax42/universal-inbox:{{ tag }} \
+      -t dax42/universal-inbox:latest \
+      --label service="universal-inbox" \
+      --file ../Dockerfile \
+      ..
+    echo "🚀 Docker image dax42/universal-inbox published with tag {{ tag }}"

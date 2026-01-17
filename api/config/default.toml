@@ -1,0 +1,200 @@
+[application]
+environment = "default"
+listen_address = "0.0.0.0"
+listen_port = 8000
+# api_path must end with /
+api_path = "/api/"
+front_base_url = "http://localhost:8080"
+# If `static_path` is specified, statics from `static_dir` will be served on `static_path`
+# static_path = ""
+min_sync_notifications_interval_in_minutes = 5
+min_sync_tasks_interval_in_minutes = 5
+# Disabled by default
+# support_href = "mailto:support@universal-inbox.com"
+show_changelog = false
+dry_run = false
+
+[application.email]
+smtp_server = "smtp.example.com"
+smtp_port = 465
+smtp_username = "user"
+smtp_password = "password"
+from_header = "nobody <nobody@example.com>"
+reply_to_header = "support <support@example.com>"
+
+[application.security]
+csp_extra_connect_src = []
+
+# [[application.security.authentication]]
+# type = "OpenIDConnect"
+# oidc_issuer_url = "https://oidc.provider"
+# oidc_api_client_id = "5678@universal_inbox"
+# oidc_api_client_secret = "secret"
+# user_profile_url = "https://oidc.provider/user"
+# oidc_flow_settings.type = "AuthorizationCodePKCEFlow"
+# oidc_flow_settings.introspection_url = ""
+# oidc_flow_settings.front_client_id = "1234@universal_inbox"
+#
+# OR
+#
+# [[application.security.authentication]]
+# type = "OpenIDConnect"
+# oidc_issuer_url = "https://oidc.provider"
+# oidc_api_client_id = "5678@universal_inbox"
+# oidc_api_client_secret = "secret"
+# user_profile_url = "https://oidc.provider/user"
+# oidc_flow_settings.type = "OIDCGoogleAuthorizationCodeFlow"
+#
+# OR
+#
+[[application.security.authentication]]
+type = "Local"
+# See OWASP recommendations https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html
+argon2_algorithm = "argon2id"
+argon2_version = 19
+argon2_memory_size = 20000
+argon2_iterations = 2
+argon2_parallelism = 1
+#
+# OR
+#
+# [[application.security.authentication]]
+# type = "Passkey"
+
+[application.http_session]
+# secret_key = ""
+# Generate new JWT key pair using `just generate-jwt-key-pair`
+jwt_secret_key = ""
+jwt_public_key = ""
+jwt_token_expiration_in_days = 30
+max_age_days = 30
+
+[application.observability.logging]
+# See https://docs.rs/tracing-subscriber/latest/tracing_subscriber/struct.EnvFilter.html
+log_directive = "info"
+dependencies_log_level = "error"
+
+# [application.observability.tracing]
+# otlp_exporter_protocol = "Grpc" # or Http
+# otlp_exporter_endpoint = "https://otlp.host"
+# is_stdout_logging_enabled = true
+
+# Depending on the OTLP provider, the header may be different or may not be
+# required
+# [application.observability.tracing.otlp_exporter_headers]
+# api-key = "12345"
+
+# [application.chat_support]
+# website_id = "CRISP_WEBSITE_ID"
+# identity_verification_secret_key = "CRISP_SECRET_KEY"
+
+[database]
+host = "127.0.0.1"
+port = 5432
+username = "postgres"
+password = "password"
+database_name = "universal-inbox"
+use_tls = false
+max_connections = 10
+
+[redis]
+host = "127.0.0.1"
+port = 6379
+use_tls = false
+
+# tag: New notification integration
+[integrations.github]
+name = "Github"
+kind = "Github"
+nango_key = "github"
+page_size = 50
+required_oauth_scopes = ["notifications", "read:discussion", "read:org", "repo"]
+# Rate limiting configuration
+api_max_retry_duration_http_seconds = 30
+api_max_retry_duration_worker_seconds = 600
+
+[integrations.linear]
+name = "Linear"
+kind = "Linear"
+nango_key = "linear"
+required_oauth_scopes = ["read", "write"]
+# Rate limiting configuration
+api_max_retry_duration_http_seconds = 30
+api_max_retry_duration_worker_seconds = 600
+
+[integrations.google_mail]
+name = "Google Mail"
+kind = "GoogleMail"
+nango_key = "google-mail"
+page_size = 500
+required_oauth_scopes = ["https://www.googleapis.com/auth/gmail.modify"]
+warning_message = "Google Mail integration is not yet public, it requires your email address to be whitelisted and you will see a warning message from Google while connecting. If you still want to connect it, please send the Google email address you want to use to the [support](mailto:support@universal-inbox.com)."
+# Rate limiting configuration
+api_max_retry_duration_http_seconds = 30
+api_max_retry_duration_worker_seconds = 600
+
+[integrations.google_calendar]
+name = "Google Calendar"
+kind = "GoogleCalendar"
+nango_key = "google-calendar"
+required_oauth_scopes = ["https://www.googleapis.com/auth/calendar"]
+# Rate limiting configuration
+api_max_retry_duration_http_seconds = 30
+api_max_retry_duration_worker_seconds = 600
+
+[integrations.google_drive]
+name = "Google Drive"
+kind = "GoogleDrive"
+nango_key = "google-drive"
+page_size = 100
+required_oauth_scopes = ["https://www.googleapis.com/auth/drive.readonly", "https://www.googleapis.com/auth/drive.metadata.readonly"]
+warning_message = "Google Drive integration is not yet public, it requires your email address to be whitelisted and you will see a warning message from Google while connecting. If you still want to connect it, please send the Google email address you want to use to the [support](mailto:support@universal-inbox.com)."
+# Rate limiting configuration
+api_max_retry_duration_http_seconds = 30
+api_max_retry_duration_worker_seconds = 600
+
+[integrations.todoist]
+name = "Todoist"
+kind = "Todoist"
+nango_key = "todoist"
+required_oauth_scopes = ["data:read_write", "data:delete"]
+# Rate limiting configuration
+api_max_retry_duration_http_seconds = 30
+api_max_retry_duration_worker_seconds = 600
+
+[integrations.slack]
+name = "Slack"
+kind = "Slack"
+nango_key = "slack"
+required_oauth_scopes = [
+  "channels:history",
+  "channels:read",
+  "emoji:read",
+  "groups:history",
+  "groups:read",
+  "im:history",
+  "im:read",
+  "mpim:history",
+  "mpim:read",
+  "reactions:read",
+  "reactions:write",
+  "stars:read",
+  "stars:write",
+  "team:read",
+  "usergroups:read",
+  "users:read",
+]
+use_as_oauth_user_scopes = true
+warning_message = "Slack mentions synchronization is only one way from Slack to Universal Inbox. Indeed, using Slack public API, it is not possible mark messages as read or to unsubscribe from a thread."
+
+[integrations.ticktick]
+name = "Tick Tick"
+kind = "TickTick"
+nango_key = "ticktick"
+required_oauth_scopes = ["tasks:read", "tasks:write"]
+is_enabled = false
+
+[oauth2]
+nango_base_url = "http://localhost:3003"
+nango_public_key = "get it from Nango/project-settings page"
+nango_secret_key = "To be generated"

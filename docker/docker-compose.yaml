@@ -1,0 +1,89 @@
+name: "universal-inbox"
+
+services:
+  nango-db:
+    image: "postgres:15"
+    networks:
+      - universal-inbox
+    volumes:
+      - nango-db:/var/lib/postgresql/data
+    env_file:
+      - nango-db.env
+
+  nango-server:
+    image: "nangohq/nango-server:hosted-02c1ee2bcbd92741057582169c95c4157ba98262"
+    networks:
+      - universal-inbox
+    ports:
+      - "3003:3003"
+    env_file:
+      - nango-server.env
+
+  universal-inbox-db:
+    image: "postgres:15"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U universal-inbox -d universal-inbox"]
+      interval: 10s
+      retries: 5
+      start_period: 30s
+      timeout: 10s
+    networks:
+      - universal-inbox
+    volumes:
+      - universal-inbox-db:/var/lib/postgresql/data
+    env_file:
+      - universal-inbox-db.env
+    ports:
+      - "5432:5432"
+
+  universal-inbox-redis:
+    image: "redis:latest"
+    networks:
+      - universal-inbox
+
+  universal-inbox:
+    image: "dax42/universal-inbox:latest"
+    command: ["serve"]
+    depends_on:
+      universal-inbox-db:
+        condition: service_healthy
+        restart: true
+      universal-inbox-redis:
+        condition: service_started
+    build:
+      context: ..
+      tags:
+        - dax42/universal-inbox:latest
+      labels:
+        org.opencontainers.image.title: "universal-inbox"
+        org.opencontainers.image.source: "https://github.com/universal-inbox/universal-inbox"
+        org.opencontainers.image.version: "0.1.0"
+        org.opencontainers.image.licenses: "Apache-2.0"
+
+    networks:
+      - universal-inbox
+    env_file:
+      - universal-inbox.env
+    ports:
+      - "8000:8000"
+
+  universal-inbox-worker:
+    image: "dax42/universal-inbox:latest"
+    command: ["start-workers"]
+    depends_on:
+      universal-inbox-db:
+        condition: service_healthy
+        restart: true
+      universal-inbox-redis:
+        condition: service_started
+    networks:
+      - universal-inbox
+    env_file:
+      - universal-inbox.env
+
+networks:
+  universal-inbox:
+
+volumes:
+  nango-db:
+  universal-inbox-db:

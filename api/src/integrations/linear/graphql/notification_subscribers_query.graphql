@@ -1,0 +1,18 @@
+query NotificationSubscribersQuery($id: String!) {
+  notification(id: $id) {
+    __typename
+    ... on IssueNotification {
+      user {
+        id
+      }
+      issue {
+        id
+        subscribers {
+          nodes {
+            id
+          }
+        }
+      }
+    }
+  }
+}

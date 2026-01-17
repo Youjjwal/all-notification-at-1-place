@@ -1,0 +1,161 @@
+query NotificationsQuery {
+  notifications {
+    nodes {
+      __typename
+      id
+      type
+      readAt
+      updatedAt
+      snoozedUntilAt
+      ... on IssueNotification {
+        issue {
+          id
+          createdAt
+          updatedAt
+          startedAt
+          completedAt
+          canceledAt
+          dueDate
+          identifier
+          title
+          url
+          priority
+          project {
+            id
+            name
+            url
+            description
+            icon
+            color
+            status { type }
+            progress
+            startDate
+            targetDate
+            lead {
+              displayName
+              avatarUrl
+              url
+            }
+          }
+          projectMilestone {
+            name
+            description
+          }
+          creator {
+            displayName
+            avatarUrl
+            url
+          }
+          assignee {
+            displayName
+            avatarUrl
+            url
+          }
+          state {
+            name
+            color
+            description
+            type
+            id
+            team {
+              states(filter: {
+                  or: [
+                    {type: {eq: "unstarted"}},
+                    {type: {eq: "completed"}}
+                    {type: {eq: "canceled"}}
+                  ]
+                }) {
+                nodes {
+                  type
+                  id
+                }
+              }
+            }
+          }
+          labels {
+            nodes {
+              name
+              description
+              color
+            }
+          }
+          description
+          team {
+            id
+            key
+            name
+            icon
+          }
+        }
+        comment {
+          body
+          updatedAt
+          user {
+            displayName
+            avatarUrl
+            url
+          }
+          url
+          parent {
+            body
+            updatedAt
+            user {
+              displayName
+              avatarUrl
+              url
+            }
+            url
+            children(last: 20) {
+              nodes {
+                body
+                updatedAt
+                user {
+                  displayName
+                  avatarUrl
+                  url
+                }
+                url
+              }
+            }
+          }
+        }
+      }
+      ... on ProjectNotification {
+        project {
+          id
+          name
+          url
+          description
+          icon
+          color
+          status { type }
+          progress
+          startDate
+          targetDate
+          lead {
+            displayName
+            avatarUrl
+            url
+          }
+        }
+        projectUpdate {
+          updatedAt
+          body
+          health
+          user {
+            displayName
+            avatarUrl
+            url
+          }
+          url
+        }
+      }
+    }
+  }
+
+  organization {
+    name
+    urlKey
+    logoUrl
+  }
+}

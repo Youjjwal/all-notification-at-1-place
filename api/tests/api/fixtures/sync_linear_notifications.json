@@ -1,0 +1,413 @@
+{
+  "data": {
+    "notifications": {
+      "nodes": [
+        {
+          "__typename": "ProjectNotification",
+          "id": "df45c8cf-c717-4db7-abb9-5c5b73b50cc9",
+          "type": "projectAddedAsMember",
+          "readAt": null,
+          "updatedAt": "2023-07-31T06:01:27.137Z",
+          "snoozedUntilAt": null,
+          "project": {
+            "id": "c1b0f0f8-9e16-4335-a540-bda09cc491df",
+            "name": "Universal Inbox",
+            "url": "https://linear.app/universal-inbox/project/test-project-33065448b39c",
+            "description": "Universal Inbox is your notification hub",
+            "icon": "Rocket",
+            "color": "#FFFFFF",
+            "status": { "type": "started" },
+            "progress": 0.54321,
+            "startDate": "2023-07-31",
+            "targetDate": "2023-08-31",
+            "lead": {
+              "displayName": "John Smith",
+              "avatarUrl": "https://avatar.url",
+              "url": "https://linear.app/user/john-smith"
+            }
+          },
+          "projectUpdate": {
+            "updatedAt": "2023-07-31T22:42:44.654Z",
+            "body": "Test update",
+            "health": "onTrack",
+            "user": {
+              "displayName": "John Smith",
+              "avatarUrl": "https://avatars.githubusercontent.com/u/1062408?v=4",
+              "url": "https://linear.app/user/john-smith"
+            },
+            "url": "https://linear.app/universal-inbox/project/test-project-33065448b39c#projectUpdate-0d3d3a0d"
+          }
+        },
+        {
+          "__typename": "ProjectNotification",
+          "id": "0f21b535-142f-4f1c-ba8a-ec71fb965888",
+          "type": "projectAddedAsLead",
+          "readAt": null,
+          "updatedAt": "2023-07-31T06:01:27.129Z",
+          "snoozedUntilAt": null,
+          "project": {
+            "id": "c1b0f0f8-9e16-4335-a540-bda09cc491df",
+            "name": "Universal Inbox",
+            "url": "https://linear.app/universal-inbox/project/test-project-33065448b39c",
+            "description": "Universal Inbox is your notification hub",
+            "icon": "Rocket",
+            "color": "#FFFFFF",
+            "status": { "type": "started" },
+            "progress": 0.54321,
+            "startDate": "2023-07-31",
+            "targetDate": "2023-08-31",
+            "lead": {
+              "displayName": "John Smith",
+              "avatarUrl": "https://avatars.githubusercontent.com/u/1062408?v=4",
+              "url": "https://linear.app/user/john-smith"
+            }
+          }
+        },
+        {
+          "__typename": "IssueNotification",
+          "id": "0c28d222-c599-43bb-af99-fcd3e99daff0",
+          "type": "issueAssignedToYou",
+          "readAt": "2023-07-31T06:01:27.112Z",
+          "updatedAt": "2023-07-31T06:01:27.112Z",
+          "snoozedUntilAt": "2023-08-12T07:00:00.000Z",
+          "issue": {
+            "id": "c8805a87-5a65-47d6-a385-64945ce3b036",
+            "createdAt": "2023-07-31T06:01:27.112Z",
+            "updatedAt": "2023-07-31T06:01:27.112Z",
+            "completedAt": null,
+            "cancelledAt": null,
+            "dueDate": null,
+            "identifier": "UNI-13",
+            "title": "Add keyboard shortcuts to scroll the preview pane",
+            "url": "https://linear.app/universal-inbox/issue/UNI-13/test-issue-3",
+            "priority": 0,
+            "project": {
+              "id": "c1b0f0f8-9e16-4335-a540-bda09cc491df",
+              "name": "Universal Inbox",
+              "url": "https://linear.app/universal-inbox/project/test-project-33065448b39c",
+              "description": "Universal Inbox is your notification hub",
+              "icon": "Rocket",
+              "color": "#FFFFFF",
+              "status": { "type": "started" },
+              "progress": 0.54321,
+              "startDate": "2023-07-31",
+              "targetDate": "2023-08-31",
+              "lead": {
+                "displayName": "John Smith",
+                "avatarUrl": "https://avatars.githubusercontent.com/u/1062408?v=4",
+                "url": "https://linear.app/user/john-smith"
+              }
+            },
+            "projectMilestone": null,
+            "creator": {
+              "displayName": "John Smith",
+              "avatarUrl": "https://avatars.githubusercontent.com/u/1062408?v=4",
+              "url": "https://linear.app/user/john-smith"
+            },
+            "assignee": null,
+            "state": {
+              "name": "In progress",
+              "color": "#FABD00",
+              "description": "This issue is being actively worked on",
+              "type": "started",
+              "id": "6F2231C6-8525-4FB7-A2B1-AC470FDF709D",
+              "team": {
+                "states": {
+                  "nodes": [
+                    {
+                      "type": "unstarted",
+                      "id": "DE8D2E6E-5613-4DEE-9221-60083E1C273C"
+                    },
+                    {
+                      "type": "completed",
+                      "id": "C66F6CD6-F8F5-4378-A1D5-22247F537CFC"
+                    },
+                    {
+                      "type": "canceled",
+                      "id": "5A83DD71-D640-45E4-8B76-2457CEB307B4"
+                    }
+                  ]
+                }
+              }
+            },
+            "labels": {
+              "nodes": [
+                {
+                  "name": "Test",
+                  "description": "This is a test label",
+                  "color": "#FFFFFF"
+                }
+              ]
+            },
+            "description": "This is a test issue",
+            "team": {
+              "id": "ee20be3f-6558-4586-b610-6c44738e362f",
+              "key": "UNI",
+              "name": "Universal inbox",
+              "icon": "Inbox"
+            }
+          },
+          "comment": {
+            "updatedAt": "2023-07-31T06:03:27.112Z",
+            "body": "ignored answer comment as it should be a child of its parent",
+            "parent": {
+              "updatedAt": "2023-07-31T06:02:27.112Z",
+              "body": "Initial comment",
+              "user": {
+                "displayName": "John Smith",
+                "avatarUrl": null,
+                "url": "https://linear.app/user/john-smith"
+              },
+              "url": "https://linear.app/universal-inbox/issue/UNI-13/test-issue-3#comment-0c00f34aa",
+              "children": {
+                "nodes": [
+                  {
+                    "updatedAt": "2023-07-31T06:03:27.112Z",
+                    "body": "other comment",
+                    "user": {
+                      "displayName": "John Smith",
+                      "avatarUrl": null,
+                      "url": "https://linear.app/user/john-smith"
+                    },
+                    "url": "https://linear.app/universal-inbox/issue/UNI-13/test-issue-3#comment-0c00f34bb"
+                  },
+                  {
+                    "updatedAt": "2023-07-31T06:03:27.112Z",
+                    "body": "answer comment",
+                    "user": {
+                      "displayName": "John Smith",
+                      "avatarUrl": null,
+                      "url": "https://linear.app/user/john-smith"
+                    },
+                    "url": "https://linear.app/universal-inbox/issue/UNI-13/test-issue-3#comment-0c00f34fd"
+                  }
+                ]
+              }
+            },
+            "children": {
+              "nodes": []
+            },
+            "user": {
+              "displayName": "John Smith",
+              "avatarUrl": null,
+              "url": "https://linear.app/user/john-smith"
+            },
+            "url": "https://linear.app/universal-inbox/issue/UNI-13/test-issue-3#comment-0c00f34fd"
+          }
+        },
+        {
+          "__typename": "IssueNotification",
+          "id": "ee045ad5-cbd7-4f5e-9683-b858304343b2",
+          "type": "issueAssignedToYou",
+          "readAt": "2023-07-31T09:49:25.495Z",
+          "updatedAt": "2023-07-31T09:49:25.661Z",
+          "snoozedUntilAt": null,
+          "issue": {
+            "id": "7b2eb301-4e49-40b1-9524-fd0c33e4c02e",
+            "createdAt": "2023-07-31T06:01:27.112Z",
+            "updatedAt": "2023-07-31T06:01:27.112Z",
+            "completedAt": "2023-07-31T06:01:27.112Z",
+            "cancelledAt": null,
+            "dueDate": null,
+            "identifier": "UNI-12",
+            "title": "Test issue 2",
+            "url": "https://linear.app/universal-inbox/issue/UNI-12/test-issue-2",
+            "priority": 1,
+            "project": {
+              "id": "c1b0f0f8-9e16-4335-a540-bda09cc491df",
+              "name": "Universal Inbox",
+              "url": "https://linear.app/universal-inbox/project/test-project-33065448b39c",
+              "description": "Universal Inbox is your notification hub",
+              "icon": "Rocket",
+              "color": "#FFFFFF",
+              "status": { "type": "started" },
+              "progress": 0.54321,
+              "startDate": "2023-07-31",
+              "targetDate": "2023-08-31",
+              "lead": {
+                "displayName": "John Smith",
+                "avatarUrl": "https://avatars.githubusercontent.com/u/1062408?v=4",
+                "url": "https://linear.app/user/john-smith"
+              }
+            },
+            "projectMilestone": {
+              "name": "Test milestone",
+              "description": "This is a test milestone"
+            },
+            "creator": {
+              "displayName": "John Smith",
+              "avatarUrl": "https://avatars.githubusercontent.com/u/1062408?v=4",
+              "url": "https://linear.app/user/john-smith"
+            },
+            "assignee": {
+              "displayName": "John Smith",
+              "avatarUrl": "https://avatars.githubusercontent.com/u/1062408?v=4",
+              "url": "https://linear.app/user/john-smith"
+            },
+            "state": {
+              "name": "In triage",
+              "color": "#FABD00",
+              "description": null,
+              "type": "triage",
+              "id": "702C66A4-F67C-4B8F-A778-51E14C6C31C8",
+              "team": {
+                "states": {
+                  "nodes": [
+                    {
+                      "type": "unstarted",
+                      "id": "DE8D2E6E-5613-4DEE-9221-60083E1C273C"
+                    },
+                    {
+                      "type": "completed",
+                      "id": "C66F6CD6-F8F5-4378-A1D5-22247F537CFC"
+                    },
+                    {
+                      "type": "canceled",
+                      "id": "5A83DD71-D640-45E4-8B76-2457CEB307B4"
+                    }
+                  ]
+                }
+              }
+            },
+            "labels": {
+              "nodes": []
+            },
+            "description": "This is a test issue",
+            "team": {
+              "id": "ee20be3f-6558-4586-b610-6c44738e362f",
+              "key": "UNI",
+              "name": "Universal inbox",
+              "icon": "Inbox"
+            }
+          },
+          "comment": {
+            "updatedAt": "2023-07-31T06:02:27.112Z",
+            "body": "comment without parent",
+            "user": {
+              "displayName": "John Smith",
+              "avatarUrl": null,
+              "url": "https://linear.app/user/john-smith"
+            },
+            "url": "https://linear.app/universal-inbox/issue/UNI-13/test-issue-3#comment-0c00f34aa",
+            "children": {
+              "nodes": [
+                {
+                  "updatedAt": "2023-07-31T06:03:27.112Z",
+                  "body": "child comment1",
+                  "user": {
+                    "displayName": "John Smith",
+                    "avatarUrl": null,
+                    "url": "https://linear.app/user/john-smith"
+                  },
+                  "url": "https://linear.app/universal-inbox/issue/UNI-13/test-issue-3#comment-0c00f34bb"
+                },
+                {
+                  "updatedAt": "2023-07-31T06:03:27.112Z",
+                  "body": "child comment2",
+                  "user": {
+                    "displayName": "John Smith",
+                    "avatarUrl": null,
+                    "url": "https://linear.app/user/john-smith"
+                  },
+                  "url": "https://linear.app/universal-inbox/issue/UNI-13/test-issue-3#comment-0c00f34fd"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "__typename": "IssueNotification",
+          "id": "9f88ccfd-eaf5-4f8a-a73f-1fd35348dba5",
+          "type": "issueAssignedToYou",
+          "readAt": null,
+          "updatedAt": "2023-07-31T06:01:27.101Z",
+          "snoozedUntilAt": null,
+          "issue": {
+            "id": "4dda960e-f498-4c6e-9477-a8e0ff441ff5",
+            "createdAt": "2023-07-31T06:01:27.112Z",
+            "updatedAt": "2023-07-31T06:01:27.112Z",
+            "completedAt": null,
+            "cancelledAt": "2023-07-31T06:01:27.112Z",
+            "dueDate": "2023-08-30",
+            "identifier": "UNI-11",
+            "title": "Test issue1",
+            "url": "https://linear.app/universal-inbox/issue/UNI-11/test-issue1",
+            "priority": 2,
+            "project": {
+              "id": "c1b0f0f8-9e16-4335-a540-bda09cc491df",
+              "name": "Universal Inbox",
+              "url": "https://linear.app/universal-inbox/project/test-project-33065448b39c",
+              "description": "Universal Inbox is your notification hub",
+              "icon": "Rocket",
+              "color": "#FFFFFF",
+              "status": { "type": "started" },
+              "progress": 0.54321,
+              "startDate": "2023-07-31",
+              "targetDate": "2023-08-31",
+              "lead": {
+                "displayName": "John Smith",
+                "avatarUrl": "https://avatars.githubusercontent.com/u/1062408?v=4",
+                "url": "https://linear.app/user/john-smith"
+              }
+            },
+            "projectMilestone": null,
+            "creator": {
+              "displayName": "John Smith",
+              "avatarUrl": "https://avatars.githubusercontent.com/u/1062408?v=4",
+              "url": "https://linear.app/user/john-smith"
+            },
+            "assignee": null,
+            "state": {
+              "name": "In triage",
+              "color": "#FABD00",
+              "description": null,
+              "type": "triage",
+              "id": "702C66A4-F67C-4B8F-A778-51E14C6C31C8",
+              "team": {
+                "states": {
+                  "nodes": [
+                    {
+                      "type": "unstarted",
+                      "id": "DE8D2E6E-5613-4DEE-9221-60083E1C273C"
+                    },
+                    {
+                      "type": "completed",
+                      "id": "C66F6CD6-F8F5-4378-A1D5-22247F537CFC"
+                    },
+                    {
+                      "type": "canceled",
+                      "id": "5A83DD71-D640-45E4-8B76-2457CEB307B4"
+                    }
+                  ]
+                }
+              }
+            },
+            "labels": {
+              "nodes": []
+            },
+            "description": null,
+            "team": {
+              "id": "ee20be3f-6558-4586-b610-6c44738e362f",
+              "key": "UNI",
+              "name": "Universal inbox",
+              "icon": "Inbox"
+            }
+          }
+        },
+        {
+          "__typename": "PostNotification",
+          "id": "ba8f7b58-94ab-4bdf-82c3-65af8ddc262d",
+          "type": "feedSummaryGenerated",
+          "readAt": null,
+          "updatedAt": "2025-04-28T04:26:44.983Z",
+          "snoozedUntilAt": null
+        }
+      ]
+    },
+    "organization": {
+      "name": "Universal Inbox",
+      "urlKey": "universal-inbox",
+      "logoUrl": "https://linear.app/images/linear-icon.png"
+    }
+  }
+}

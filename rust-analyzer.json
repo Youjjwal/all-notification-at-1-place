@@ -1,0 +1,24 @@
+{
+  "rust-analyzer": {
+    "cargo": {
+      "allTargets": false
+    },
+    "checkOnSave": false,
+    "check": {
+      "extraArgs": [
+        "--profile",
+        "dev"
+      ]
+    },
+    "files": {
+      "watcherExclude": [
+        ".devbox",
+        "web/node_modules"
+      ],
+      "excludeDirs": [
+        ".devbox",
+        "web/node_modules"
+      ]
+    }
+  }
+}

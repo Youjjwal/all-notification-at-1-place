@@ -1,0 +1,18 @@
+[application]
+environment = "dev"
+listen_address = "127.0.0.1"
+static_dir = "../target/dx/universal-inbox-web/debug/web/public"
+static_path = ""
+min_sync_tasks_interval_in_minutes = 2
+min_sync_notifications_interval_in_minutes = 2
+version = "dev"
+front_base_url = "https://dev.universal-inbox.com"
+
+[application.observability.logging]
+log_directive = "info,universal_inbox_api=debug,sqlx=debug,lettre=info,slack_morphism=debug,mockito=debug,wiremock=debug"
+dependencies_log_level = "debug"
+
+[application.http_session]
+secret_key = "1234567890ABCDEF1234567890ABCDEF1234567890ABCDEF1234567890ABCDEF"
+jwt_secret_key = "MFECAQEwBQYDK2VwBCIEIEjXs1FUT0f7vB/A0R4Sq8iK/PUv3qlVtbgTkOrCyzL7gSEASdnznKQYGbMZytQAlOQ0WEYvk8AWsb0KzEbYQp99nhA="
+jwt_public_key = "SdnznKQYGbMZytQAlOQ0WEYvk8AWsb0KzEbYQp99nhA="

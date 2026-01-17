@@ -1,0 +1,36 @@
+{
+  "id": "123",
+  "historyId": "111",
+  "messages": [
+    {
+      "id": "123",
+      "threadId": "123",
+      "labelIds": ["STARRED", "INBOX", "UNREAD"],
+      "snippet": "test",
+      "payload": {
+        "mimeType": "multipart/alternative",
+        "headers": [
+          {
+            "name": "Date",
+            "value": "Sat, 16 Sep 2023 21:11:28 GMT"
+          },
+          {
+            "name": "Subject",
+            "value": "News from Universal Inbox"
+          },
+          {
+            "name": "From",
+            "value": "no-reply@universal-inbox.com"
+          },
+          {
+            "name": "To",
+            "value": "test@example.com"
+          }
+        ]
+      },
+      "sizeEstimate": 2222,
+      "historyId": "111",
+      "internalDate": "1694898688000"
+    }
+  ]
+}
