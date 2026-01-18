@@ -1,144 +1,137 @@
 # Universal Inbox
 
-[![Apache 2 License](https://img.shields.io/badge/license-Apache%202-blue.svg)](https://www.apache.org/licenses/)
-[![Coverage Status](https://coveralls.io/repos/github/universal-inbox/universal-inbox/badge.svg?branch=main)](https://coveralls.io/github/universal-inbox/universal-inbox?branch=main)
-[![CI](https://github.com/universal-inbox/universal-inbox/workflows/CI/badge.svg)](https://github.com/universal-inbox/universal-inbox/actions)
+**Universal Inbox** is an open-source solution designed to centralize notifications and tasks from fragmented platforms into a single, unified workflow. Stop context-switching and manage your entire digital workspace from one unique inbox.
 
-Universal Inbox is a solution that centralizes all your notifications and tasks in one place to create a unique inbox.
+---
 
-## Features
+## 🚀 Key Features
 
-- Synchronize notifications from:
-  - Github
-  - Linear
-  - Google Mail
-  - ... (more to come)
-- Synchronize tasks from:
-  - Todoist
-- Act on notifications:
-  - delete the notification and a new one will be received if the underlying resource (issue, pull request, project, ...) is updated
-  - unsubscribe the notification, it is deleted and no new one will be received unless a new mention appears in the underlying resource
-  - snooze the notification to make it disappear until the next day
-  - create and plan a task in the connected task service (Todoist for now)
-  - associate the notification to an existing task
-- 2 ways synchronization: Universal Inbox tries as much as possible to keep its notifications state in sync with the upstream service. The upstream service API does not always permit it.
+### 🔄 Multi-Platform Synchronization
 
-## Development
+* **Notifications:** GitHub, Linear, Google Mail (with more coming).
+* **Tasks:** Full integration with Todoist.
+* **Bi-directional Sync:** Maintains state consistency between Universal Inbox and upstream services whenever the provider API allows.
 
-### Pre-requisites
+### ⚡ Actionable Inbox
 
-The development environment is using [Devbox](https://www.jetpack.io/devbox/) which is based on Nix.
-Before setting up the Universal Inbox environment, you have to install Devbox following these [instructions](https://www.jetpack.io/devbox/docs/quickstart/#install-devbox).
+Take immediate action on notifications without leaving the interface:
 
-### Environment setup
+* **Archive/Delete:** Remove notifications; new updates to the resource will trigger a fresh notification.
+* **Unsubscribe:** Permanently silence a thread unless explicitly mentioned.
+* **Snooze:** Temporarily hide items until the next day.
+* **Task Conversion:** Transform any notification into a planned task in Todoist or link it to an existing one.
 
+---
+
+## 🛠 Development Setup
+
+Universal Inbox uses **Devbox** (Nix-based) to ensure a consistent development environment across all machines.
+
+### Prerequisites
+
+1. **Install Devbox:** Follow the [official installation guide](https://www.jetpack.io/devbox/docs/quickstart/#install-devbox).
+2. **Clone the Repository:**
 ```bash
 git clone https://github.com/universal-inbox/universal-inbox.git
+cd universal-inbox
+
 ```
 
-The simplest is to install [direnv](https://direnv.net/) to enter a complete development environment everytime you enter the `universal-inbox` directory:
+
+
+### Environment Configuration
+
+We recommend using [direnv](https://direnv.net/) to automatically load the environment:
 
 ```bash
-cd universal-inbox
 direnv allow
+
 ```
 
-From here, it should keep the environment installed using Devbox.
-
-#### Environment setup (bis)
-
-Without direnv, you can start by installing the development environment:
-
-```bash
-cd universal-inbox
-devbox install
-```
-
-and then enter the environment:
+*Alternatively, you can use the Devbox shell directly:*
 
 ```bash
 devbox shell
+
 ```
 
-#### Setup PostgreSQL
+### Database & Services
 
-Start PostgreSQL (it will also start Redis):
+This project uses `just` as a command runner for common tasks.
 
+1. **Start Infrastructure:** Start PostgreSQL and Redis:
 ```bash
 just run-db
+
 ```
 
-Prepare the database:
 
+2. **Initialize Database:**
 ```bash
 just migrate-db
+
 ```
 
-### Build the application
+
+
+---
+
+## ⚙️ Configuration
+
+### Authentication (OIDC)
+
+Universal Inbox requires an OpenID Connect provider for user authentication. You can configure this via environment variables or a local config file at `api/config/local.toml`.
+
+**Required Variables:**
+
+```ini
+AUTHENTICATION_OIDC_ISSUER_URL=https://your-oidc-provider.com
+AUTHENTICATION_OIDC_FRONT_CLIENT_ID=your-client-id
+AUTHENTICATION_OIDC_API_CLIENT_SECRET=your-secret
+
+```
+
+### Nango Integration
+
+We use [Nango](https://github.com/NangoHQ/nango) to manage OAuth2 tokens. To enable integrations, you must register Universal Inbox as an OAuth2 app on each platform (GitHub, Google, etc.) and configure the credentials in the Nango dashboard.
+
+* **Nango Dashboard:** `http://localhost:3003`
+* **Default Dev Redirect:** `https://oauth-dev.universal-inbox.com`
+
+---
+
+## 🏗 Build & Run
+
+**Build the full stack:**
 
 ```bash
 just build-all
-```
-
-### Execute tests
-
-Before executing the tests, Postgres and Redis must be running:
-
-```bash
-just test-all
-```
-
-### OpenIDConnect service
-
-Universal Inbox uses OpenIDConnect to implement the user authentication and it relies on a third party OIDC service.
-Thus it must be configured to use this OIDC service using the following configuration variables, using environment variables:
 
 ```
-AUTHENTICATION_OIDC_ISSUER_URL=https://oidc.service
-AUTHENTICATION_OIDC_INTROSPECTION_URL=https://oidc.service/oauth/v2/introspect
-AUTHENTICATION_OIDC_FRONT_CLIENT_ID=1234@universal_inbox
-AUTHENTICATION_OIDC_API_CLIENT_ID=1234@universal_inbox
-AUTHENTICATION_OIDC_API_CLIENT_SECRET=secret
-AUTHENTICATION_USER_PROFILE_URL=https://oidc.service/users/me
-```
 
-Or using a `api/config/local.toml` file:
-
-```toml
-[application.authentication]
-oidc_issuer_url = "https://service"
-oidc_introspection_url = "https://service/oauth/v2/introspect"
-oidc_front_client_id = "1234@universal_inbox"
-oidc_api_client_id = "1234@universal_inbox"
-oidc_api_client_secret = "secret"
-user_profile_url = "https://oidc.service/users/me"
-```
-
-### Start the application
-
-(`just run-db` must be stopped as both will start PostgreSQL and Redis):
+**Launch the application:**
+*(Ensure `just run-db` is stopped first, as `run-all` handles database containers)*
 
 ```bash
 just run-all
+
 ```
 
-It will start the following services:
+Once started, access the web interface at: **[http://localhost:8080](https://www.google.com/search?q=http://localhost:8080)**.
 
-- `postgresql` to store Universal Inbox data
-- `redis` to store the HTTP sessions
-- `nango-server` (and its database `nango-db`) running as Docker container. [Nango](https://github.com/NangoHQ/nango) is used to manage all OAuth2 connections and token with third party services (used to fetch notifications and tasks)
-- `ui-api` is the Universal Inbox rest API
-- `ui-web` is the Universal Inbox frontend
+**Run Tests:**
 
-You can the connect the development application on [http://localhost:8080](http://localhost:8080).
+```bash
+just test-all
 
-### Configure Nango
+```
 
-To be able to connect to the implemented integrations (for notifications or tasks), Universal Inbox must be declared as an OAuth2 application for each integrations to fetch a `Client ID` and a `Client Secret`.
+---
 
-Each integrations must then be configured in Nango (accessible at [http://localhost:3003](http://localhost:3003)).
-To be able to complete an OAuth2 connection, the Nango server must be accessible from internet. The public address for development is by default <https://oauth-dev.universal-inbox.com>
+## 📄 License
 
-## License
+Distributed under the **Apache 2 License**. See `LICENSE` for more information.
 
-[Apache 2 License](LICENSE)
+---
+
+**Would you like me to help you generate a `CONTRIBUTING.md` file or a specific `docker-compose` setup for this project?**
